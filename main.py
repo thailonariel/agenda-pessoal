@@ -22,6 +22,8 @@ def main(page: ft.Page):
         ''', (txt_modelo.value, txt_marca.value, txt_ano.value, txt_cor.value, txt_placa.value))
         conn.commit()
         conn.close()
+        carregar_veiculos()
+        txt_modelo.value = ""
         
         # Limpar todos os campos para dar a sensação de "próximo"
         txt_modelo.value = ""

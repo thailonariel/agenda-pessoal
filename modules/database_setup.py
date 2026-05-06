@@ -17,7 +17,7 @@ def init_db():
             marca TEXT NOT NULL,
             ano INTEGER,
             cor TEXT,
-            placa TEXT,
+            placa TEXT UNIQUE,
             km_atual REAL DEFAULT 0
         )
     ''')
