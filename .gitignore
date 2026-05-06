@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+
+# Banco de Dados (Para não subir seus gastos reais)
+data/*.db
+
+# IDEs e Sistema
+.vscode/
+.idea/
+.DS_Store
