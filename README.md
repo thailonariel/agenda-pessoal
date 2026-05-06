@@ -1,0 +1,1 @@
+Projeto criado com a intenção inicial de fazer um gerenciador de manutenções (carro e notebook) e custos, e posteriormente a ideia foi ampliada para ser um gerenciador pessoal e financeiro customizado para meu uso.
