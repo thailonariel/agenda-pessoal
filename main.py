@@ -38,6 +38,29 @@ def main(page: ft.Page):
         txt_modelo.focus()
         page.update()
 
+    # Lista para exibir os veículos
+    lista_veiculos = ft.Column()
+
+    def carregar_veiculos():
+        lista_veiculos.controls.clear()
+        conn = sqlite3.connect('data/agenda.db')
+        cursor = conn.cursor()
+        cursor.execute('SELECT modelo, marca, placa FROM veiculos')
+
+        for row in cursor.fetchall():
+            lista_veiculos.controls.append(
+                ft.ListTile(
+                    leading=ft.Icon("directions_car"),
+                    title=ft.Text(f"{row[0]} - {row[1]}"),
+                    subtitle=ft.Text(f"Placa: {row[2]}"),
+                )
+            )
+        conn.close()
+        page.update()
+
+    # Chamar a função ao iniciar
+    carregar_veiculos()
+
     # Campos de entrada
     txt_modelo = ft.TextField(label="Modelo (ex: Fiesta)")
     txt_marca = ft.TextField(label="Marca (ex: Ford)")
@@ -54,7 +77,10 @@ def main(page: ft.Page):
         txt_ano,
         txt_cor,
         txt_placa,
-        btn_salvar
+        btn_salvar,
+        ft.Divider(),
+        ft.Text("Veículos Cadastrados", size=20, weight="bold"),
+        lista_veiculos
     )
 
 ft.app(target=main)
