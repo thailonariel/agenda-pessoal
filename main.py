@@ -9,8 +9,8 @@ def main(page: ft.Page):
 
     #Função para salvar os dados no banco de dados
     def cadastrar_veiculo(e):
-        if not txt_modelo.value:
-            txt_modelo.error_text = "Por favor, digite o modelo"
+        if not txt_modelo.value or not txt_marca.value:
+            txt_modelo.error_text = "Campo obrigatório"
             page.update()
             return
         
@@ -22,12 +22,20 @@ def main(page: ft.Page):
         ''', (txt_modelo.value, txt_marca.value, txt_ano.value, txt_cor.value, txt_placa.value))
         conn.commit()
         conn.close()
-
-        # Limpar campos e avisar sucesso
+        
+        # Limpar todos os campos para dar a sensação de "próximo"
         txt_modelo.value = ""
         txt_marca.value = ""
-        page.snack_bar = ft.SnackBar(ft.Text("Veículo cadastrado com sucesso!"))
+        txt_ano.value = ""
+        txt_cor.value = ""
+        txt_placa.value = ""
+        
+        # Mostrar aviso de sucesso
+        page.snack_bar = ft.SnackBar(ft.Text("Veículo cadastrado com sucesso!"), bgcolor="green")
         page.snack_bar.open = True
+        
+        # Focar de volta no primeiro campo
+        txt_modelo.focus()
         page.update()
 
     # Campos de entrada
